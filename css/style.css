@@ -1,0 +1,95 @@
+:root {
+  --bg-color: #f4f7f6;
+  --card-bg: #ffffff;
+  --primary: #3498db;
+  --text: #2c3e50;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text);
+  margin: 0;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 { 
+  margin-bottom: 30px; 
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  width: 100%;
+  max-width: 1000px;
+}
+
+.card {
+  background: var(--card-bg);
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.card h2 {
+  margin: 0 0 10px 0;
+  font-size: 1.2rem;
+  border-bottom: 2px solid #ecf0f1;
+  padding-bottom: 5px;
+}
+
+button, input[type="submit"] {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+
+button:hover, input[type="submit"]:hover { 
+  background-color: #2980b9; 
+}
+
+input[type="text"] {
+  padding: 8px;
+  border: 1px solid #bdc3c7;
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.box-teste {
+  height: 80px;
+  background-color: #e74c3c;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+#log-painel {
+  width: 100%;
+  max-width: 1000px;
+  background: #2c3e50;
+  color: #2ecc71;
+  padding: 15px;
+  border-radius: 8px;
+  margin-top: 25px;
+  box-sizing: border-box;
+  height: 150px;
+  overflow-y: auto;
+  font-family: monospace;
+}
