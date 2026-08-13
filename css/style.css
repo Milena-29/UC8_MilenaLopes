@@ -32,3 +32,17 @@
     margin-top: 15px;
     color: #555;
 }
+
+.icone-gravador {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    margin-right: 8px;
+}
+
+.icone-gravador512 {
+    width: 35px;
+    height: 20px;
+    vertical-align: middle;
+    margin-right: 8px;
+}
