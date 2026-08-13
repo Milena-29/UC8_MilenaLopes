@@ -4,7 +4,7 @@ const statusGravacao = document.getElementById('status-gravacao');
 // Função para iniciar a gravação
 function iniciarGravacao() {
 
-    gravador.innerHTML = '<img src="img/icon-512.png" alt="Microfone" class="icone-gravador512"> Gravando... Não solte!';
+    gravador.textContent = '🔴 Gravando... Não solte!';
     statusGravacao.textContent = 'Status: Capturando áudio...';
     gravador.style.backgroundColor = '#e74c3c';
 
@@ -13,7 +13,7 @@ function iniciarGravacao() {
 // Função para parar a gravação
 function pararGravacao() {
 
-    gravador.innerHTML = '<img src="img/icon-192.png" alt="Microfone" class="icone-gravador"> Clique e Segure para Gravar';
+    gravador.textContent = '🎤 Clique e Segure para Gravar';
     statusGravacao.textContent = 'Status: Gravação concluída e enviada!';
     gravador.style.backgroundColor = '#3498db';
 
