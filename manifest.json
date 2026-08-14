@@ -2,7 +2,7 @@
   "name": "Simulador de Gravador de Áudio",
   "short_name": "Gravador",
   "description": "Simulador de gravador de áudio.",
-  "start_url": "./",
+  "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#3498db",
