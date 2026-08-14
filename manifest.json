@@ -19,5 +19,11 @@
       "sizes": "512x512",
       "type": "image/png"
     }
+  ],
+  "id": "simulador-gravador-audio",
+  "dir": "ltr",
+  "scope": "./",
+  "categories": [
+    "multimedia"
   ]
 }
