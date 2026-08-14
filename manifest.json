@@ -4,8 +4,8 @@
   "description": "Simulador de gravador de áudio.",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#3498db",
+  "background_color": "#3498db",
+  "theme_color": "#ffffff",
   "lang": "pt-BR",
   "orientation": "portrait",
   "icons": [
