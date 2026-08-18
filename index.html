@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>O que o JavaScript pode fazer?</title>
+  <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+
+<header>
+  <div class="badge">Aula interativa</div>
+  <h1>O que o <span>JavaScript</span> pode fazer?</h1>
+  <p>Explore cada capacidade clicando nos botões abaixo. Depois, veja o código que faz a mágica acontecer.</p>
+</header>
+
+<nav>
+  <a href="#s1">1. Alterar conteúdo</a>
+  <a href="#s2">2. Alterar atributos</a>
+  <a href="#s3">3. Alterar estilos</a>
+  <a href="#s4">4. Ocultar elementos</a>
+  <a href="#s5">5. Exibir elementos</a>
+</nav>
+
+<main>
+
+  <!-- ── 1. ALTERAR CONTEÚDO ── -->
+  <section class="section" id="s1">
+    <div class="section-header">
+      <div class="number">1</div>
+      <h2>Alterar o conteúdo HTML</h2>
+      <span class="chip">innerHTML</span>
+    </div>
+    <div class="section-body">
+      <p class="desc">
+        O JavaScript pode trocar o texto (ou o HTML inteiro) dentro de qualquer elemento da página usando a propriedade <code style="color:var(--accent2)">innerHTML</code>.
+      </p>
+      <div class="demo">
+        <div class="demo-label">Resultado</div>
+        <p id="demo1">O JavaScript pode alterar o conteúdo de um elemento HTML.</p>
+      </div>
+      <div class="btn-row">
+        <button id="botao-alterar-texto">Alterar texto</button>
+        <button class="reset" id="botao-resetar-demo1">↺ Resetar</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 2. ALTERAR ATRIBUTOS ── -->
+  <section class="section" id="s2">
+    <div class="section-header">
+      <div class="number">2</div>
+      <h2>Alterar atributos HTML</h2>
+      <span class="chip">.src / .href</span>
+    </div>
+    <div class="section-body">
+      <p class="desc">
+        Atributos como <code style="color:var(--accent2)">src</code>, <code style="color:var(--accent2)">href</code> e <code style="color:var(--accent2)">alt</code> também podem ser modificados dinamicamente. Aqui simulamos uma lâmpada ligando e desligando.
+      </p>
+      <div class="demo">
+        <div class="demo-label">Resultado</div>
+        <div class="lamp-wrap">
+          <div id="lamp" class="lamp-svg">
+            <!-- Lâmpada DESLIGADA -->
+            <svg id="lamp-off" viewBox="0 0 80 120" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="40" cy="50" rx="26" ry="28" fill="#2e3350" stroke="#4a5080" stroke-width="2"/>
+              <path d="M28 72 Q30 88 40 92 Q50 88 52 72 Z" fill="#2e3350" stroke="#4a5080" stroke-width="1.5"/>
+              <rect x="33" y="90" width="14" height="5" rx="2" fill="#4a5080"/>
+              <rect x="33" y="95" width="14" height="5" rx="2" fill="#3a4070"/>
+              <rect x="35" y="100" width="10" height="4" rx="2" fill="#3a4070"/>
+              <text x="40" y="56" text-anchor="middle" font-size="18" fill="#3a4070">✕</text>
+            </svg>
+            <!-- Lâmpada LIGADA -->
+            <svg id="lamp-on" viewBox="0 0 80 120" xmlns="http://www.w3.org/2000/svg" style="display:none">
+              <ellipse cx="40" cy="50" rx="26" ry="28" fill="#fffacd" stroke="#f0c040" stroke-width="2"/>
+              <path d="M28 72 Q30 88 40 92 Q50 88 52 72 Z" fill="#ffe88a" stroke="#f0c040" stroke-width="1.5"/>
+              <rect x="33" y="90" width="14" height="5" rx="2" fill="#c0a020"/>
+              <rect x="33" y="95" width="14" height="5" rx="2" fill="#b09010"/>
+              <rect x="35" y="100" width="10" height="4" rx="2" fill="#b09010"/>
+              <text x="40" y="58" text-anchor="middle" font-size="20" fill="#f0c040">★</text>
+              <line x1="40" y1="16" x2="40" y2="8"  stroke="#f0c040" stroke-width="2" stroke-linecap="round"/>
+              <line x1="62" y1="24" x2="68" y2="18" stroke="#f0c040" stroke-width="2" stroke-linecap="round"/>
+              <line x1="18" y1="24" x2="12" y2="18" stroke="#f0c040" stroke-width="2" stroke-linecap="round"/>
+              <line x1="68" y1="46" x2="76" y2="46" stroke="#f0c040" stroke-width="2" stroke-linecap="round"/>
+              <line x1="12" y1="46" x2="4"  y2="46" stroke="#f0c040" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <span id="lamp-status" style="font-size:0.8rem;color:var(--muted)">Lâmpada desligada</span>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button id="botao-ligar">💡 Ligar a luz</button>
+        <button class="secondary" id="botao-desligar">🌑 Desligar a luz</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 3. ALTERAR ESTILOS ── -->
+  <section class="section" id="s3">
+    <div class="section-header">
+      <div class="number">3</div>
+      <h2>Alterar estilos CSS</h2>
+      <span class="chip">.style</span>
+    </div>
+    <div class="section-body">
+      <p class="desc">
+        Com <code style="color:var(--accent2)">element.style.propriedade</code> você muda qualquer regra CSS diretamente pelo JavaScript — cor, tamanho, fonte, margem e muito mais.
+      </p>
+      <div class="demo">
+        <div class="demo-label">Resultado</div>
+        <p id="demo3" class="texto-demonstracao3">O JavaScript pode alterar o estilo visual de qualquer elemento.</p>
+      </div>
+      <div class="btn-row">
+        <button id="botao-aumentar-fonte">Aumentar fonte</button>
+        <button id="botao-mudar-cor">Mudar cor</button>
+        <button id="botao-negrito">Negrito</button>
+        <button id="botao-fundo">Fundo</button>
+        <button class="reset" id="botao-resetar-demo3">↺ Resetar</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 4. OCULTAR ── -->
+  <section class="section" id="s4">
+    <div class="section-header">
+      <div class="number">4</div>
+      <h2>Ocultar elementos HTML</h2>
+      <span class="chip">display = 'none'</span>
+    </div>
+    <div class="section-body">
+      <p class="desc">
+        Definir <code style="color:var(--accent2)">style.display = 'none'</code> faz o elemento desaparecer da página — como se ele não existisse no layout.
+      </p>
+      <div class="demo">
+        <div class="demo-label">Resultado</div>
+        <p id="demo4">Este parágrafo vai sumir quando você clicar no botão abaixo.</p>
+      </div>
+      <div class="btn-row">
+        <button id="botao-ocultar">Ocultar elemento</button>
+        <button class="reset" id="botao-mostrar">↺ Mostrar de volta</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 5. EXIBIR ── -->
+  <section class="section" id="s5">
+    <div class="section-header">
+      <div class="number">5</div>
+      <h2>Exibir elementos HTML</h2>
+      <span class="chip">display = 'block'</span>
+    </div>
+    <div class="section-body">
+      <p class="desc">
+        O oposto também é possível: um elemento que começa oculto no HTML pode ser revelado com <code style="color:var(--accent2)">style.display = 'block'</code>.
+      </p>
+      <div class="demo">
+        <div class="demo-label">Resultado</div>
+        <p id="demo5-hint" class="dica-demonstracao5">👆 Clique no botão para revelar a mensagem escondida.</p>
+        <p id="hidden-text" class="texto-escondido">🎉 Olá! Eu estava escondido no código HTML o tempo todo!</p>
+      </div>
+      <div class="btn-row">
+        <button id="botao-revelar">Revelar mensagem</button>
+        <button class="reset" id="botao-esconder">↺ Esconder de novo</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  Página criada para fins educacionais &nbsp;·&nbsp; JavaScript para iniciantes
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
