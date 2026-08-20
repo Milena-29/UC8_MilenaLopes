@@ -1,0 +1,192 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'WaltographRegular', cursive;
+    color: inherit;
+    text-decoration: none;
+}
+
+body {
+    background-color: #70a1ff;
+    min-height: 100vh;
+    padding-bottom: 40px;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 30px;
+    padding: 20px 30px;
+    background-color: #0b0d7e;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+}
+
+/* Estrelas ficam escondidas */
+.estrelas-header {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity .3s ease;
+}
+
+/* Aparecem ao passar o mouse no header */
+header:hover .estrelas-header {
+    opacity: 1;
+}
+
+/* Estrelas */
+.estrelas-header span {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 0 5px white, 0 0 12px white;
+    animation: piscarEstrelaHeader 1.5s infinite alternate;
+}
+
+/* Posições das estrelas */
+.estrelas-header span:nth-child(1) { left: 10%; top: 25%; }
+.estrelas-header span:nth-child(2) { left: 20%; top: 65%; }
+.estrelas-header span:nth-child(3) { left: 35%; top: 20%; }
+.estrelas-header span:nth-child(4) { left: 48%; top: 70%; }
+.estrelas-header span:nth-child(5) { left: 60%; top: 25%; }
+.estrelas-header span:nth-child(6) { left: 72%; top: 65%; }
+.estrelas-header span:nth-child(7) { left: 84%; top: 20%; }
+.estrelas-header span:nth-child(8) { left: 92%; top: 70%; }
+
+/* Animação das estrelas */
+@keyframes piscarEstrelaHeader {
+    from {
+        opacity: .2;
+        transform: scale(.6);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1.4);
+    }
+}
+
+header:hover {
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1617048656251-c1b3e7f7a1f4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80');
+}
+
+header h1 {
+    text-align: center;
+    margin: 10px 0;
+    font-size: 70px;
+    color: #ffffff;
+    text-shadow: 3px 3px 0 black;
+    transition: text-shadow 0.3s ease;
+}
+
+header h1:hover {
+    text-shadow: 3px 3px 0 black, 0 0 15px rgba(255, 255, 255, 0.8);
+}
+
+header p, #contadorPersonagens {
+    font-size: 24px;
+    color: #ffffff;
+    text-align: center;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+header p:hover, #contadorPersonagens:hover {
+    color: #ffffff;
+    text-shadow: 3px 3px 0 black, 0 0 15px rgba(255, 255, 255, 0.8);
+    transform: scale(1.05);
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto 30px;
+    padding: 0 20px;
+}
+
+.card {
+    width: 100%;
+    height: 280px;
+    border: 4px solid black;
+    border-radius: 12px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 20px rgba(230, 230, 233, 0.712);
+}
+
+.card img {
+    width: 100%;
+    height: 200px;
+    object-fit: contain; /* Exibe a imagem completa sem cortar */
+    background-color: #f0f0f0; /* Preenchimento neutro para o fundo da foto */
+    transition: transform 0.3s ease;
+}
+
+.card:hover img {
+    transform: scale(1.08);
+}
+
+.card h3 {
+    font-size: 25px;
+    margin: 10px 5px;
+    text-align: center;
+    color: black;
+}
+
+.controles {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+#btnCarregar {
+    padding: 12px 30px;
+    border: 3px solid black;
+    border-radius: 20px;
+    background-color: #ffffff;
+    color: black;
+    font-size: 22px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+#btnCarregar:hover {
+    background-color: rgba(7, 24, 121, 0.712);
+    color: #ffffff;
+    border-color: #ffffff;
+    transform: scale(1.05);
+}
+
+#btnCarregar:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    transform: none;
+}
+
+#pagina {
+    font-size: 30px;
+    color: rgb(10, 10, 10);
+    font-weight: bold;
+}
