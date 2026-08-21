@@ -5,7 +5,7 @@ const urlsToCache = [
     "/index.html",
     "/css/style.css",
     "/js/script.js",
-    "/manisfest.json",
+    "/manifest.json",
     "https://api.disneyapi.dev/character",
     "https://fontlibrary.org//face/waltograph-disney",
     "https://upload.wikimedia.org/wikipedia/commons/f/fe/Mickey_Mouse_head_and_ears.svg",
