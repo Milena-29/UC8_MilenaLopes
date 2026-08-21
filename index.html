@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Laboratório de Eventos JavaScript</title>
+  <!-- Vinculação do arquivo CSS externo -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <h1>Laboratório Prático de Eventos JS</h1>
+
+  <div class="container">
+    
+    <!-- 1. EVENTOS DE MOUSE -->
+    <div class="card">
+      <h2>1. Eventos de Mouse</h2>
+      <button id="btn-clique">Clique Aqui</button>
+      <div id="area-mouse" class="box-teste">Passe o mouse aqui</div>
+    </div>
+
+    <!-- 2. EVENTOS DE TECLADO -->
+    <div class="card">
+      <h2>2. Eventos de Teclado</h2>
+      <p>Digite no campo abaixo:</p>
+      <input type="text" id="campo-teclado" placeholder="Pressione teclas aqui...">
+    </div>
+
+    <!-- 3. EVENTOS DE FORMULÁRIO -->
+    <div class="card">
+      <h2>3. Eventos de Formulário</h2>
+      <form id="meu-formulario">
+        <input type="text" id="campo-input" placeholder="Digite algo (input/change)" required>
+        <br><br>
+        <input type="submit" value="Enviar Formulário">
+      </form>
+    </div>
+
+    <!-- 4. EVENTOS DE JANELA / PÁGINA -->
+    <div class="card">
+      <h2>4. Eventos de Janela</h2>
+      <p>Redimensione a janela ou faça scroll na página para testar.</p>
+      <p id="info-janela">Tamanho atual: -</p>
+    </div>
+
+  </div>
+
+  <!-- PAINEL DE LOGS PARA VER OS RESULTADOS EM TEMPO REAL -->
+  <div id="log-painel">
+    <div>&gt;_ Aguardando eventos...</div>
+  </div>
+
+  <!-- Vinculação do arquivo JavaScript externo (no final do body) -->
+  <script src="js/script.js"></script>
+</body>
+</html>
