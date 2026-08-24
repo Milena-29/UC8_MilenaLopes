@@ -9,7 +9,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="img\+.png">
     <link rel="stylesheet" href="css/style.css">
     <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#00295C">
+    <meta name="theme-color" content="#000000">
 </head>
 
 <body>
@@ -119,6 +119,16 @@
     </footer>
 
     <script src="js/script.js"></script>
+     <script>
+        if ("serviceWorker" in navigator) {
+            window.addEventListener("load", () => {
+                navigator.serviceWorker
+                    .register("./sw.js")
+                    .then(() => console.log("Service Worker registrado"))
+                    .catch(err => console.error("Erro ao registrar SW:", err));
+            });
+        }
+    </script>
 
 </body>
 
