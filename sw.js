@@ -10,8 +10,10 @@ const FILES_TO_CACHE = [
   './Tela_cadastro.html',
   './pagamento.html',
   './manifest.json',
+
   './css/style.css',
   './js/script.js',
+
   './img/+.png',
   './img/Academia_img.png',
   './img/Academia_padrão.png',
@@ -49,48 +51,55 @@ const FILES_TO_CACHE = [
   './img/Unidades +.png',
   './img/whatsapp.png',
   './img/youtube.png',
-  './img/Zumba.png',
-  './manifest.json',
-
+  './img/Zumba.png'
 ];
 
-// Instalação
+// ===============================
+// INSTALAÇÃO
+// ===============================
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then((cache) => {
-        console.log('[SW] Cacheando arquivos...');
+        console.log('[SW] Criando cache:', CACHE_NAME);
         return cache.addAll(FILES_TO_CACHE);
       })
+      .then(() => {
+        console.log('[SW] Arquivos armazenados com sucesso.');
+        return self.skipWaiting();
+      })
       .catch((error) => {
-        console.error('[SW] Erro ao criar cache:', error);
+        console.error('[SW] Erro durante a instalação:', error);
       })
   );
-
-  self.skipWaiting();
 });
 
-// Ativação
+// ===============================
+// ATIVAÇÃO
+// ===============================
 self.addEventListener('activate', (event) => {
   event.waitUntil(
-    caches.keys().then((keys) => {
-      return Promise.all(
-        keys.map((key) => {
-          if (key !== CACHE_NAME) {
-            console.log('[SW] Removendo cache antigo:', key);
-            return caches.delete(key);
-          }
-        })
-      );
-    })
+    caches.keys()
+      .then((cacheNames) => {
+        return Promise.all(
+          cacheNames.map((cacheName) => {
+            if (cacheName !== CACHE_NAME) {
+              console.log('[SW] Excluindo cache antigo:', cacheName);
+              return caches.delete(cacheName);
+            }
+          })
+        );
+      })
+      .then(() => self.clients.claim())
   );
-
-  self.clients.claim();
 });
 
-// Requisições
+// ===============================
+// REQUISIÇÕES
+// ===============================
 self.addEventListener('fetch', (event) => {
 
+  // Ignora requisições que não sejam GET
   if (event.request.method !== 'GET') {
     return;
   }
@@ -99,13 +108,16 @@ self.addEventListener('fetch', (event) => {
     caches.match(event.request)
       .then((cachedResponse) => {
 
+        // Se estiver no cache, utiliza o cache
         if (cachedResponse) {
           return cachedResponse;
         }
 
+        // Caso contrário, busca na internet
         return fetch(event.request)
           .then((networkResponse) => {
 
+            // Não armazena respostas inválidas
             if (
               !networkResponse ||
               networkResponse.status !== 200 ||
@@ -114,6 +126,7 @@ self.addEventListener('fetch', (event) => {
               return networkResponse;
             }
 
+            // Salva uma cópia no cache
             const responseClone = networkResponse.clone();
 
             caches.open(CACHE_NAME)
@@ -122,8 +135,24 @@ self.addEventListener('fetch', (event) => {
               });
 
             return networkResponse;
-          });
+          })
+          .catch(() => {
+            console.warn(
+              '[SW] Recurso indisponível offline:',
+              event.request.url
+            );
 
+            // Para páginas HTML, tenta retornar a página inicial
+            if (event.request.destination === 'document') {
+              return caches.match('./index.html');
+            }
+
+            // Para outros recursos, retorna uma resposta vazia
+            return new Response('', {
+              status: 503,
+              statusText: 'Offline'
+            });
+          });
       })
   );
 });
