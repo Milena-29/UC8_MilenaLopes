@@ -104,7 +104,7 @@ if (
 }
 
 // ==================== SERVICE WORKER ====================
-if ('serviceWorker' in navigator) {
+ if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
         navigator.serviceWorker.register('./sw.js')
             .then((registration) => {
@@ -115,7 +115,6 @@ if ('serviceWorker' in navigator) {
             });
     });
 }
-
 // ==================== PLANOS & PAGAMENTO ====================
 document.addEventListener("DOMContentLoaded", function () {
     const dadosPlanos = {
