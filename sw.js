@@ -25,7 +25,8 @@ const ASSETS_TO_CACHE = [
     './img/pino_de_localizacao.png',
     './img/Seta_direita.png',
     './img/+.png',
-    './img/move+ academy.png'
+    './img/move+ academy.png',
+    './sw.js'
 ];
 
 self.addEventListener('install', (event) => {
