@@ -103,8 +103,8 @@ if (
     startAutoPlay();
 }
 
-// ==================== SERVICE WORKER ====================
- if ('serviceWorker' in navigator) {
+// ==================== REGISTRO DO SERVICE WORKER ====================
+if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
         navigator.serviceWorker.register('./sw.js')
             .then((registration) => {
@@ -115,6 +115,7 @@ if (
             });
     });
 }
+
 // ==================== PLANOS & PAGAMENTO ====================
 document.addEventListener("DOMContentLoaded", function () {
     const dadosPlanos = {
@@ -161,45 +162,34 @@ function mostrarPagamento(tipo, elemento) {
     if (elemento) {
         elemento.classList.add("ativo");
     }
+
+    const conteudos = document.querySelectorAll(".conteudoPagamento");
+    conteudos.forEach(conteudo => conteudo.style.display = "none");
+
+    if (tipo === 'cartao') {
+        const el = document.getElementById("formCartao");
+        if (el) el.style.display = "block";
+    } else if (tipo === 'pix') {
+        const el = document.getElementById("formPix");
+        if (el) el.style.display = "block";
+    } else if (tipo === 'boleto') {
+        const el = document.getElementById("formBoleto");
+        if (el) el.style.display = "block";
+    }
 }
 
-// Finaliza o pagamento e redireciona
 function finalizarPagamento() {
     localStorage.setItem("aluno", "true");
 }
 
-// Alterna entre cartão, pix e boleto
-function mostrarPagamento(tipo, elemento) {
-    // Atualiza a classe ativa nos botões
-    const metodos = document.querySelectorAll(".Metodo");
-    metodos.forEach(item => item.classList.remove("ativo"));
-
-    if (elemento) {
-        elemento.classList.add("ativo");
-    }
-
-    // Oculta todas as seções de pagamento
-    const conteudos = document.querySelectorAll(".conteudoPagamento");
-    conteudos.forEach(conteudo => conteudo.style.display = "none");
-
-    // Exibe apenas a seção selecionada
-    if (tipo === 'cartao') {
-        document.getElementById("formCartao").style.display = "block";
-    } else if (tipo === 'pix') {
-        document.getElementById("formPix").style.display = "block";
-    } else if (tipo === 'boleto') {
-        document.getElementById("formBoleto").style.display = "block";
-    }
-}
-
-// Função para copiar o código Pix para a área de transferência
 function copiarPix() {
     const inputPix = document.getElementById("codigoPix");
-    inputPix.select();
-    inputPix.setSelectionRange(0, 99999); // Para dispositivos móveis
-
-    navigator.clipboard.writeText(inputPix.value);
-    alert("Código Pix copiado para a área de transferência!");
+    if (inputPix) {
+        inputPix.select();
+        inputPix.setSelectionRange(0, 99999);
+        navigator.clipboard.writeText(inputPix.value);
+        alert("Código Pix copiado para a área de transferência!");
+    }
 }
 
 function gerarBoleto() {
@@ -207,168 +197,160 @@ function gerarBoleto() {
     navigator.clipboard.writeText("34191.09008 61713.917307 71621.145008 3 95200000012990");
 }
 
+// ==================== QUESTIONÁRIO / PASSO A PASSO ====================
 let currentStep = 1;
 const totalSteps = 6;
 
 const formData = {
-  objetivo: 'Ganhar massa muscular',
-  objetivoIcon: 'img/treinamento-de-forca.png',
-
-  peso: '75',
-  altura: '178',
-  idade: '28',
-
-  experiencia: 'Intermediário',
-  experienciaIcon: 'img/grafico-de-barras.png',
-
-  frequencia: '4 dias',
-  prioridade: 'Peito'
+    objetivo: 'Ganhar massa muscular',
+    objetivoIcon: 'img/treinamento-de-forca.png',
+    peso: '75',
+    altura: '178',
+    idade: '28',
+    experiencia: 'Intermediário',
+    experienciaIcon: 'img/grafico-de-barras.png',
+    frequencia: '4 dias',
+    prioridade: 'Peito'
 };
 
 const mapaImagensCorpo = {
-  'Peito': 'img/musculosPeito.png',
-  'Costas': 'img/musculosCostas.png',
-  'Ombros': 'img/musculosOmbros.png',
-  'Braços': 'img/musculosBracos.png',
-  'Abdômen': 'img/musculosAbdomen.png',
-  'Pernas': 'img/musculosPernas.png',
-  'Glúteos': 'img/musculosGluteos.png',
+    'Peito': 'img/musculosPeito.png',
+    'Costas': 'img/musculosCostas.png',
+    'Ombros': 'img/musculosOmbros.png',
+    'Braços': 'img/musculosBracos.png',
+    'Abdômen': 'img/musculosAbdomen.png',
+    'Pernas': 'img/musculosPernas.png',
+    'Glúteos': 'img/musculosGluteos.png',
 };
 
 function updateUI() {
-  document.querySelectorAll('.secao').forEach(section => {
-    section.classList.remove('ativo');
-  });
-  
-  const currentSection = document.getElementById(`step-${currentStep}`);
-  if (currentSection) {
-    currentSection.classList.add('ativo');
-  }
-
-  const progressPercent = (currentStep / totalSteps) * 100;
-  const progressLine = document.getElementById('progress-line');
-  const stepText = document.getElementById('step-text');
-
-  if (progressLine) progressLine.style.width = `${progressPercent}%`;
-  if (stepText) stepText.innerText = `Etapa ${currentStep} de ${totalSteps}`;
-
-  document.querySelectorAll('.passo').forEach((item, index) => {
-    if (index + 1 <= currentStep) {
-      item.classList.add('ativo');
-    } else {
-      item.classList.remove('ativo');
+    document.querySelectorAll('.secao').forEach(section => {
+        section.classList.remove('ativo');
+    });
+    
+    const currentSection = document.getElementById(`step-${currentStep}`);
+    if (currentSection) {
+        currentSection.classList.add('ativo');
     }
-  });
 
-  const btnBack = document.getElementById('btn-back');
-  if (btnBack) {
-    btnBack.style.display = currentStep === 1 ? 'none' : 'inline-flex';
-  }
+    const progressPercent = (currentStep / totalSteps) * 100;
+    const progressLine = document.getElementById('progress-line');
+    const stepText = document.getElementById('step-text');
 
-  const btnNext = document.getElementById('btn-next');
-  if (btnNext) {
-    if (currentStep === totalSteps) {
-      btnNext.innerHTML = 'Gerar Meus Treinos <i class="fa-solid fa-check"></i>';
-    } else {
-      btnNext.innerHTML = 'Próximo Passo <i class="fa-solid fa-arrow-right"></i>';
+    if (progressLine) progressLine.style.width = `${progressPercent}%`;
+    if (stepText) stepText.innerText = `Etapa ${currentStep} de ${totalSteps}`;
+
+    document.querySelectorAll('.passo').forEach((item, index) => {
+        if (index + 1 <= currentStep) {
+            item.classList.add('ativo');
+        } else {
+            item.classList.remove('ativo');
+        }
+    });
+
+    const btnBack = document.getElementById('btn-back');
+    if (btnBack) {
+        btnBack.style.display = currentStep === 1 ? 'none' : 'inline-flex';
     }
-  }
+
+    const btnNext = document.getElementById('btn-next');
+    if (btnNext) {
+        if (currentStep === totalSteps) {
+            btnNext.innerHTML = 'Gerar Meus Treinos <i class="fa-solid fa-check"></i>';
+        } else {
+            btnNext.innerHTML = 'Próximo Passo <i class="fa-solid fa-arrow-right"></i>';
+        }
+    }
 }
 
 function nextScreen() {
-  saveStepData();
+    saveStepData();
 
-  if (currentStep < totalSteps) {
-    currentStep++;
-    if (currentStep === totalSteps) {
-      updateSummary();
+    if (currentStep < totalSteps) {
+        currentStep++;
+        if (currentStep === totalSteps) {
+            updateSummary();
+        }
+        updateUI();
+    } else {
+        finishForm();
     }
-    updateUI();
-  } else {
-    finishForm();
-  }
 }
 
 function prevScreen() {
-  if (currentStep > 1) {
-    currentStep--;
-    updateUI();
-  }
+    if (currentStep > 1) {
+        currentStep--;
+        updateUI();
+    }
 }
 
 function selectOption(key, value, element) {
-  const parent = element.parentElement;
+    const parent = element.parentElement;
 
-  parent.querySelectorAll('.cartao').forEach(card => {
-    card.classList.remove('ativo');
-  });
+    parent.querySelectorAll('.cartao').forEach(card => {
+        card.classList.remove('ativo');
+    });
 
-  element.classList.add('ativo');
-  formData[key] = value;
+    element.classList.add('ativo');
+    formData[key] = value;
 
-  if (key === 'prioridade') {
-    const avatarEl = document.getElementById('avatar-musculo');
-    if (avatarEl && mapaImagensCorpo[value]) {
-      avatarEl.src = mapaImagensCorpo[value];
+    if (key === 'prioridade') {
+        const avatarEl = document.getElementById('avatar-musculo');
+        if (avatarEl && mapaImagensCorpo[value]) {
+            avatarEl.src = mapaImagensCorpo[value];
+        }
     }
-  }
 
-  const img = element.querySelector('img');
-  if (img) {
-    if (key === 'objetivo') formData.objetivoIcon = img.getAttribute('src');
-    if (key === 'experiencia') formData.experienciaIcon = img.getAttribute('src');
-  }
+    const img = element.querySelector('img');
+    if (img) {
+        if (key === 'objetivo') formData.objetivoIcon = img.getAttribute('src');
+        if (key === 'experiencia') formData.experienciaIcon = img.getAttribute('src');
+    }
 }
 
 function saveStepData() {
-  if (currentStep === 2) {
-    const pesoInput = document.getElementById('input-peso');
-    const alturaInput = document.getElementById('input-altura');
-    const idadeInput = document.getElementById('input-idade');
+    if (currentStep === 2) {
+        const pesoInput = document.getElementById('input-peso');
+        const alturaInput = document.getElementById('input-altura');
+        const idadeInput = document.getElementById('input-idade');
 
-    if (pesoInput) formData.peso = pesoInput.value;
-    if (alturaInput) formData.altura = alturaInput.value;
-    if (idadeInput) formData.idade = idadeInput.value;
-  }
+        if (pesoInput) formData.peso = pesoInput.value;
+        if (alturaInput) formData.altura = alturaInput.value;
+        if (idadeInput) formData.idade = idadeInput.value;
+    }
 }
 
 function updateSummary() {
-  const objEl = document.getElementById('sum-objetivo');
-  const pesoEl = document.getElementById('sum-peso');
-  const altEl = document.getElementById('sum-altura');
-  const idadeEl = document.getElementById('sum-idade');
-  const expEl = document.getElementById('sum-experiencia');
-  const freqEl = document.getElementById('sum-frequencia');
-  const prioEl = document.getElementById('sum-prioridade');
+    const objEl = document.getElementById('sum-objetivo');
+    const pesoEl = document.getElementById('sum-peso');
+    const altEl = document.getElementById('sum-altura');
+    const idadeEl = document.getElementById('sum-idade');
+    const expEl = document.getElementById('sum-experiencia');
+    const freqEl = document.getElementById('sum-frequencia');
+    const prioEl = document.getElementById('sum-prioridade');
 
-  const objIcon = document.getElementById('sum-objetivo-icon');
-  const expIcon = document.getElementById('sum-experiencia-icon');
+    const objIcon = document.getElementById('sum-objetivo-icon');
+    const expIcon = document.getElementById('sum-experiencia-icon');
 
-  if (objEl) objEl.innerText = formData.objetivo;
-  if (pesoEl) pesoEl.innerText = `${formData.peso} kg`;
-  if (altEl) altEl.innerText = `${formData.altura} cm`;
-  if (idadeEl) idadeEl.innerText = `${formData.idade} anos`;
-  if (expEl) expEl.innerText = formData.experiencia;
-  if (freqEl) freqEl.innerText = `${formData.frequencia} por semana`;
-  if (prioEl) prioEl.innerText = formData.prioridade;
+    if (objEl) objEl.innerText = formData.objetivo;
+    if (pesoEl) pesoEl.innerText = `${formData.peso} kg`;
+    if (altEl) altEl.innerText = `${formData.altura} cm`;
+    if (idadeEl) idadeEl.innerText = `${formData.idade} anos`;
+    if (expEl) expEl.innerText = formData.experiencia;
+    if (freqEl) freqEl.innerText = `${formData.frequencia} por semana`;
+    if (prioEl) prioEl.innerText = formData.prioridade;
 
-  if (objIcon && formData.objetivoIcon) objIcon.src = formData.objetivoIcon;
-  if (expIcon && formData.experienciaIcon) expIcon.src = formData.experienciaIcon;
+    if (objIcon && formData.objetivoIcon) objIcon.src = formData.objetivoIcon;
+    if (expIcon && formData.experienciaIcon) expIcon.src = formData.experienciaIcon;
 }
 
 function finishForm() {
-  localStorage.setItem('dadosTreino', JSON.stringify(formData));
-  localStorage.setItem('questionarioConcluido', 'true');
-  window.location.href = 'treino.html';
+    localStorage.setItem('dadosTreino', JSON.stringify(formData));
+    localStorage.setItem('questionarioConcluido', 'true');
+    window.location.href = 'treino.html';
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  updateUI();
-});
-
 // ==================== AUTENTICAÇÃO (CADASTRO E LOGIN) ====================
-
-// Função para cadastrar o usuário no localStorage
 function cadastrarUsuario(event) {
     if (event) event.preventDefault();
 
@@ -380,16 +362,12 @@ function cadastrarUsuario(event) {
     const plano = document.getElementById("plano")?.value;
     const pagamento = document.getElementById("pagamento")?.value;
 
-    // Validação básica dos campos obrigatórios
     if (!nome || !email || !senha || !plano || !pagamento) {
         alert("Por favor, preencha todos os campos obrigatórios para criar sua conta!");
         return;
     }
 
-    // Busca a lista de usuários salvos no localStorage (ou inicia uma lista vazia)
     const usuarios = JSON.parse(localStorage.getItem("usuariosMoveAcademy") || "[]");
-
-    // Verifica se já existe um usuário cadastrado com o mesmo e-mail
     const usuarioExistente = usuarios.find(u => u.email.toLowerCase() === email.toLowerCase());
 
     if (usuarioExistente) {
@@ -398,18 +376,7 @@ function cadastrarUsuario(event) {
         return;
     }
 
-    // Cria o objeto do novo usuário
-    const novoUsuario = {
-        nome,
-        dataNascimento,
-        email,
-        telefone,
-        senha,
-        plano,
-        pagamento
-    };
-
-    // Adiciona e grava no localStorage
+    const novoUsuario = { nome, dataNascimento, email, telefone, senha, plano, pagamento };
     usuarios.push(novoUsuario);
     localStorage.setItem("usuariosMoveAcademy", JSON.stringify(usuarios));
 
@@ -417,7 +384,6 @@ function cadastrarUsuario(event) {
     window.location.href = "tela_login.html";
 }
 
-// Função para validar o login do usuário
 function fazerLogin(event) {
     if (event) event.preventDefault();
 
@@ -429,10 +395,7 @@ function fazerLogin(event) {
         return;
     }
 
-    // Busca a lista de usuários no localStorage
     const usuarios = JSON.parse(localStorage.getItem("usuariosMoveAcademy") || "[]");
-
-    // Autentica as credenciais
     const usuarioValido = usuarios.find(u => u.email.toLowerCase() === email.toLowerCase() && u.senha === senha);
 
     if (usuarioValido) {
@@ -444,12 +407,8 @@ function fazerLogin(event) {
         alert("E-mail ou senha incorretos! Tente novamente.");
     }
 }
-document.addEventListener('DOMContentLoaded', () => {
-    gerarCalendarioReal();
-    carregarDadosUsuario();
-});
 
-// Função para calcular os 7 dias da semana real e formatar o calendário
+// ==================== PAINEL / DASHBOARD ====================
 function gerarCalendarioReal() {
     const container = document.getElementById('calendario-semana');
     const mesAnoEl = document.getElementById('mes-ano-atual');
@@ -462,16 +421,14 @@ function gerarCalendarioReal() {
     ];
 
     const hoje = new Date();
-    const diaSemanaHoje = hoje.getDay(); // 0 (Domingo) a 6 (Sábado)
+    const diaSemanaHoje = hoje.getDay();
 
-    // Atualiza o mês e ano do topo
     if (mesAnoEl) {
         mesAnoEl.innerText = `${mesesNomes[hoje.getMonth()]} ${hoje.getFullYear()}`;
     }
 
     container.innerHTML = '';
 
-    // Gera de Domingo (0) até Sábado (6) da semana atual
     for (let i = 0; i < 7; i++) {
         const dataDia = new Date(hoje);
         dataDia.setDate(hoje.getDate() - diaSemanaHoje + i);
@@ -502,16 +459,13 @@ function gerarCalendarioReal() {
     }
 }
 
-// Carrega os dados salvos durante o cadastro / formulário de treino
 function carregarDadosUsuario() {
-    // 1. Nome do Aluno
     const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado') || '{}');
     const nomeEl = document.getElementById('nome-aluno');
     if (nomeEl && usuarioLogado.nome) {
-        nomeEl.innerText = usuarioLogado.nome.split(' ')[0]; // Pega o primeiro nome
+        nomeEl.innerText = usuarioLogado.nome.split(' ')[0];
     }
 
-    // 2. Dados do Treino Gerado
     const dadosTreino = JSON.parse(localStorage.getItem('dadosTreino') || '{}');
     const nomeTreinoEl = document.getElementById('dash-nome-treino');
     const infoTreinoEl = document.getElementById('dash-info-treino');
@@ -524,3 +478,10 @@ function carregarDadosUsuario() {
         infoTreinoEl.innerText = `Foco: ${dadosTreino.objetivo} • 45 min`;
     }
 }
+
+// Inicialização de componentes no carregamento da página
+document.addEventListener('DOMContentLoaded', () => {
+    updateUI();
+    gerarCalendarioReal();
+    carregarDadosUsuario();
+});
