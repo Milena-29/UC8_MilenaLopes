@@ -9,8 +9,6 @@ const ASSETS_TO_CACHE = [
   './unidades.html',
   './planos.html',
   './pagamento.html',
-  './questionario.html',
-  './treino.html',
   './css/style.css',
   './js/script.js',
   './manifest.json',
