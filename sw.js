@@ -1,51 +1,89 @@
 const CACHE_NAME = 'move-academy-v1';
 
 const ASSETS_TO_CACHE = [
-  './',
-  './Tela_login.html',
-  './Tela_cadastro.htm',
-  './aulas.html',
-  './css/style.css',
-  './img/+.png',
-  './js/script.js',
-  './index.html',
-  './manifest.json',
+    './',
+    './index.html',
+    './planos.html',
+    './aulas.html',
+    './unidades.html',
+    './Tela_login.html',
+    './Tela_cadastro.html',
+    './css/style.css',
+    './js/script.js',
+    './manifest.json',
+    './img/+.png',
+    './img/Peso.png',
+    './img/Cardiopng.png',
+    './img/Nutri.png',
+    './img/Person.png',
+    './img/move+ academy.png',
+    './img/facebook.png',
+    './img/instagram.png',
+    './img/youtube.png',
+    './img/telefone.png',
+    './img/email.png',
+    './img/pino_de_localizacao.png',
+    './img/Seta_direita.png',
+    './img/+.png',
+    './img/move+ academy.png'
 ];
 
-// Evento de Instalação: Salva todos os arquivos estáticos no cache
 self.addEventListener('install', (event) => {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
-      console.log('[Service Worker] Caching app shell');
-      return cache.addAll(ASSETS_TO_CACHE);
-    }).then(() => self.skipWaiting())
-  );
+    event.waitUntil(
+        caches.open(CACHE_NAME)
+            .then((cache) => {
+                console.log('[Service Worker] Salvando arquivos no cache');
+
+                return cache.addAll(ASSETS_TO_CACHE);
+            })
+            .then(() => {
+                return self.skipWaiting();
+            })
+    );
 });
 
-// Evento de Ativação: Limpa caches antigos caso a versão do CACHE_NAME mude
 self.addEventListener('activate', (event) => {
-  event.waitUntil(
-    caches.keys().then((cacheNames) => {
-      return Promise.all(
-        cacheNames.map((cache) => {
-          if (cache !== CACHE_NAME) {
-            console.log('[Service Worker] Removing old cache:', cache);
-            return caches.delete(cache);
-          }
-        })
-      );
-    }).then(() => self.clients.claim())
-  );
+    event.waitUntil(
+        caches.keys()
+            .then((cacheNames) => {
+                return Promise.all(
+                    cacheNames.map((cacheName) => {
+                        if (cacheName !== CACHE_NAME) {
+                            console.log(
+                                '[Service Worker] Removendo cache antigo:',
+                                cacheName
+                            );
+
+                            return caches.delete(cacheName);
+                        }
+                    })
+                );
+            })
+            .then(() => {
+                return self.clients.claim();
+            })
+    );
 });
 
-// Evento Fetch: Intercepta as requisições para responder via Cache primeiro e Rede como fallback
 self.addEventListener('fetch', (event) => {
-  event.respondWith(
-    caches.match(event.request).then((cachedResponse) => {
-      if (cachedResponse) {
-        return cachedResponse;
-      }
-      return fetch(event.request);
-    })
-  );
+    if (event.request.method !== 'GET') {
+        return;
+    }
+
+    event.respondWith(
+        caches.match(event.request)
+            .then((cachedResponse) => {
+                if (cachedResponse) {
+                    return cachedResponse;
+                }
+
+                return fetch(event.request)
+                    .then((networkResponse) => {
+                        return networkResponse;
+                    })
+                    .catch(() => {
+                        return caches.match('./index.html');
+                    });
+            })
+    );
 });
