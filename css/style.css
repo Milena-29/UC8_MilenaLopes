@@ -308,16 +308,6 @@ footer {
     cursor: pointer;
     transition: all .3s ease;
 }
-
-.card button {
-    margin-top: auto;
-    background: #31489c;
-    border: none;
-    padding: 12px 25px;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: all .3s ease;
-}
 .card button:hover {
     background: #0096D6;
     transform: scale(1.05);
@@ -1234,9 +1224,8 @@ footer {
     margin-bottom: 30px;
 }
 
-.setaD {
+.setaD, .setaE {
     border: none;
-    background-image: url("../img/Seta_direita.png");
     background-repeat: no-repeat;
     background-position: center;
     background-size: 18px;
@@ -1246,17 +1235,8 @@ footer {
     cursor: pointer;
 }
 
-.setaE {
-    border: none;
-    background-image: url("../img/Seta_esquerda.png");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 18px;
-    background-color: transparent;
-    width: 35px;
-    height: 35px;
-    cursor: pointer;
-}
+.setaD { background-image: url("../img/Seta_direita.png"); }
+.setaE { background-image: url("../img/Seta_esquerda.png"); }
 
 .listaDias {
     display: flex;
