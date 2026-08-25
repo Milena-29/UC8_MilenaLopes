@@ -25,9 +25,17 @@ const ASSETS_TO_CACHE = [
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME)
-      .then(cache => cache.addAll(ASSETS_TO_CACHE))
+      .then(async (cache) => {
+        // Adiciona os arquivos um a um para evitar que um arquivo ausente quebre todo o PWA
+        for (const asset of ASSETS_TO_CACHE) {
+          try {
+            await cache.add(asset);
+          } catch (err) {
+            console.warn(`Falha ao salvar no cache o arquivo: ${asset}`, err);
+          }
+        }
+      })
       .then(() => self.skipWaiting())
-      .catch(error => console.error('Erro ao criar cache:', error))
   );
 });
 
