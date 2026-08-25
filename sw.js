@@ -3,7 +3,7 @@ const CACHE_NAME = 'move-academy-v1';
 const ASSETS_TO_CACHE = [
   './',
   './Tela_login.html',
-  './Tela_cadastro.htm',
+  './Tela_cadastro.html',
   './aulas.html',
   './css/style.css',
   './img/+.png',
