@@ -1,18 +1,36 @@
 /* ==========================================================================
-   1. GERAL & BASE
+   1. GERAL
    ========================================================================== */
 
-body {
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: #00295C;
-}
-
 * {
+    box-sizing: border-box;
     text-decoration: none;
 }
 
-h1,h3,p,a {
+html {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #00295C;
+    overflow-x: hidden;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+h1,
+h3,
+p,
+a {
     color: white;
     margin-top: 0;
 }
@@ -76,6 +94,16 @@ header {
     background: #0096D6;
 }
 
+/* Botão do menu mobile */
+#btnMenu {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 28px;
+    cursor: pointer;
+}
+
 
 /* ==========================================================================
    3. RODAPÉ
@@ -84,7 +112,7 @@ header {
 footer {
     background: #2a4591;
     padding: 30px;
-    margin: 0px;
+    margin: 0;
     width: 100%;
 }
 
@@ -120,14 +148,14 @@ footer {
 
 
 /* ==========================================================================
-   4. HOME / INDEX
+   4. HOME
    ========================================================================== */
 
 .painelPrincipal {
     background-image: url("../img/Academia_img.png");
     background-size: cover;
     background-position: center;
-    height: 500px;
+    min-height: 500px;
     padding: 80px;
 }
 
@@ -290,7 +318,9 @@ footer {
     border-radius: 8px;
 }
 
-.seloB,.seloP,.seloV {
+.seloB,
+.seloP,
+.seloV {
     width: 40px;
     height: 50px;
     background-size: contain;
@@ -307,13 +337,16 @@ footer {
     border-radius: 10px;
     cursor: pointer;
     transition: all .3s ease;
+    color: white;
 }
+
 .card button:hover {
     background: #0096D6;
     transform: scale(1.05);
 }
 
-/* Tabela dos Planos */
+/* Tabela dos planos */
+
 .TabelaPlanos {
     width: 55%;
     margin: 40px auto;
@@ -381,7 +414,6 @@ footer {
     background: white;
     padding: 15px 30px;
     border-radius: 12px;
-    display: inline;
     align-items: center;
     gap: 10px;
 }
@@ -452,10 +484,9 @@ footer {
 
 
 /* ==========================================================================
-   7. LOGIN & CADASTRO
+   7. LOGIN
    ========================================================================== */
 
-/* Login */
 .PaginaLogin {
     background: white;
     display: flex;
@@ -464,14 +495,13 @@ footer {
 
 .FotoLogin {
     background-image: url("../img/Tela_de_login.png");
-    width: 100%;
-    height: 180px;
+    width: 50%;
+    min-height: 100vh;
     background-size: cover;
-    background-position: center top; /* Foca na parte superior da imagem no mobile */
+    background-position: center top;
     background-repeat: no-repeat;
     position: relative;
 }
-
 
 .Voltar {
     position: absolute;
@@ -534,7 +564,11 @@ footer {
     background: #0096D6;
 }
 
-/* Cadastro */
+
+/* ==========================================================================
+   8. CADASTRO
+   ========================================================================== */
+
 .PaginaCadastro {
     background: #00295C;
     display: flex;
@@ -582,11 +616,11 @@ footer {
     margin-top: 10px;
 }
 
-.Cadastro input,.Cadastro select {
+.Cadastro input,
+.Cadastro select {
     width: 100%;
     padding: 10px;
     border: 1px solid #999;
-    box-sizing: border-box;
 }
 
 .Linha {
@@ -620,7 +654,7 @@ footer {
 
 
 /* ==========================================================================
-   PAGAMENTO
+   9. PAGAMENTO
    ========================================================================== */
 
 .PagamentoBody {
@@ -649,8 +683,6 @@ footer {
     font-size: 16px;
 }
 
-/* Área principal */
-
 .PagamentoArea {
     width: 100%;
     max-width: 1600px;
@@ -662,15 +694,13 @@ footer {
     align-items: start;
 }
 
-/* Formulário */
-
 .PagamentoForm {
     width: 100%;
     min-width: 0;
-    background:#011650;
+    background: #011650;
     padding: clamp(20px, 3vw, 30px);
     border-radius: 20px;
-    border:#007bb6 1px solid;
+    border: 1px solid #007bb6;
 }
 
 .PagamentoForm h2 {
@@ -709,7 +739,10 @@ footer {
     border-color: #0096d6;
 }
 
-/* Métodos de pagamento */
+
+/* ==========================================================================
+   10. MÉTODOS DE PAGAMENTO
+   ========================================================================== */
 
 .MetodosPagamento {
     display: grid;
@@ -766,7 +799,10 @@ footer {
     font-size: 11px;
 }
 
-/* Campos lado a lado */
+
+/* ==========================================================================
+   11. CAMPOS DO PAGAMENTO
+   ========================================================================== */
 
 .LinhaInputs {
     display: grid;
@@ -778,8 +814,9 @@ footer {
     min-width: 0;
 }
 
+
 /* ==========================================================================
-   RESUMO DO PEDIDO
+   12. RESUMO DO PEDIDO
    ========================================================================== */
 
 .ResumoPedido {
@@ -826,14 +863,12 @@ footer {
     background: rgba(0, 150, 214, 0.08);
     border: 1px solid #0096D6;
     border-radius: 10px;
-    color: #fff;
+    color: white;
     text-align: center;
     font-size: 15px;
     font-weight: 700;
     line-height: 1.4;
-    transition: background-color 0.3s ease,
-                border-color 0.3s ease,
-                transform 0.3s ease;
+    transition: .3s;
 }
 
 .SemTaxa:hover {
@@ -852,7 +887,7 @@ footer {
     font-size: 18px;
     font-weight: bold;
     cursor: pointer;
-    transition: background .3s, transform .3s;
+    transition: .3s;
 }
 
 .Finalizar:hover {
@@ -860,8 +895,9 @@ footer {
     transform: translateY(-2px);
 }
 
+
 /* ==========================================================================
-   PIX
+   13. PIX
    ========================================================================== */
 
 .ContainerPix {
@@ -903,7 +939,7 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
-    background:#00BFFF;
+    background: #00BFFF;
     border-radius: 8px;
     color: white;
     font-size: 1.2rem;
@@ -942,15 +978,16 @@ footer {
     color: white;
     font-weight: bold;
     cursor: pointer;
-    transition: background .3s;
+    transition: .3s;
 }
 
 .LinhaCopiaCola button:hover {
     background: #007bb6;
 }
 
+
 /* ==========================================================================
-   BOLETO
+   14. BOLETO
    ========================================================================== */
 
 .BoxBoleto {
@@ -991,8 +1028,9 @@ footer {
     cursor: pointer;
 }
 
+
 /* ==========================================================================
-   ALERTA
+   15. ALERTA
    ========================================================================== */
 
 .AlertaInformativo {
@@ -1038,7 +1076,7 @@ footer {
 
 
 /* ==========================================================================
-   9. AULAS
+   16. AULAS
    ========================================================================== */
 
 .principal {
@@ -1070,13 +1108,13 @@ footer {
 
 .cardAula {
     width: 900px;
+    max-width: 100%;
     height: 270px;
     border-radius: 12px;
     overflow: hidden;
     position: relative;
 }
 
-/* Container do carrossel responsivo */
 .carrossel-container {
     width: 100%;
     max-width: 100%;
@@ -1085,31 +1123,21 @@ footer {
     border-radius: 12px;
 }
 
-/* Área que envelopa o slide */
 .imagens-slide {
     width: 100%;
     position: relative;
 }
 
-/* Ajuste das imagens para não cortar nem distorcer */
 .imagens-slide img {
     width: 100%;
     height: auto;
-    max-height: 250px; /* Limita a altura em telas menores */
-    object-fit: contain; /* Exibe a imagem inteira sem cortar os textos das pontas */
+    max-height: 250px;
+    object-fit: contain;
     display: none;
 }
 
 .imagens-slide img.ativa {
     display: block;
-}
-
-/* Ajustes específicos para mobile */
-@media (max-width: 768px) {
-    .imagens-slide img {
-        max-height: 200px;
-        object-fit: contain; /* Garante que o texto dentro da imagem continue visível */
-    }
 }
 
 .botao-nav {
@@ -1154,15 +1182,6 @@ footer {
     background: white;
 }
 
-@keyframes fade {
-    from {
-        opacity: 0.5;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
 .infoAula {
     padding: 30px;
 }
@@ -1181,19 +1200,6 @@ footer {
 .textoCard {
     color: #a4b3d6;
     font-size: 12px;
-}
-
-.bolinhas {
-    position: absolute;
-    bottom: 15px;
-    left: 30px;
-    display: flex;
-    gap: 6px;
-}
-
-.bolinhaAtivo {
-    width: 25px;
-    background: white;
 }
 
 .filtros {
@@ -1224,7 +1230,8 @@ footer {
     margin-bottom: 30px;
 }
 
-.setaD, .setaE {
+.setaD,
+.setaE {
     border: none;
     background-repeat: no-repeat;
     background-position: center;
@@ -1235,8 +1242,13 @@ footer {
     cursor: pointer;
 }
 
-.setaD { background-image: url("../img/Seta_direita.png"); }
-.setaE { background-image: url("../img/Seta_esquerda.png"); }
+.setaD {
+    background-image: url("../img/Seta_direita.png");
+}
+
+.setaE {
+    background-image: url("../img/Seta_esquerda.png");
+}
 
 .listaDias {
     display: flex;
@@ -1285,18 +1297,21 @@ footer {
     color: #00295C;
 }
 
-.hora, .nomeAula {
+.hora,
+.nomeAula {
     font-weight: bold;
     font-size: 18px;
 }
 
-.professor, .local {
+.professor,
+.local {
     color: #666;
 }
 
 .acao {
     text-align: right;
 }
+
 .reservar {
     width: 100%;
     padding: 10px;
@@ -1313,7 +1328,11 @@ footer {
     transform: translateY(-7px);
     box-shadow: 0 15px 35px #0096D6;
 }
-/* TREINOS */
+
+
+/* ==========================================================================
+   17. TREINOS
+   ========================================================================== */
 
 .TreinosBody {
     background: linear-gradient(35deg, #00295C 45%, #000 100%);
@@ -1393,46 +1412,14 @@ footer {
     background: #0096D6;
 }
 
-/* ==========================================================================
-   RESPONSIVIDADE
-   ========================================================================== */
-
-/* --------------------------------------------------------------------------
-   BASE
-   -------------------------------------------------------------------------- */
-
-* {
-    box-sizing: border-box;
-}
-
-html {
-    width: 100%;
-    max-width: 100%;
-    overflow-x: hidden;
-}
-
-body {
-    width: 100%;
-    max-width: 100%;
-    margin: 0;
-    overflow-x: hidden;
-}
-
-img {
-    max-width: 100%;
-    height: auto;
-}
-
 
 /* ==========================================================================
-   TABLET — ATÉ 1024px
+   18. TABLET — ATÉ 1024px
    ========================================================================== */
 
 @media (max-width: 1024px) {
 
-    /* ----------------------------------------------------------------------
-       HEADER
-       ---------------------------------------------------------------------- */
+    /* Header */
 
     header {
         padding: 15px 25px;
@@ -1451,17 +1438,11 @@ img {
     }
 
 
-    /* ----------------------------------------------------------------------
-       HOME
-       ---------------------------------------------------------------------- */
+    /* Home */
 
     .painelPrincipal {
         min-height: 450px;
-        height: auto;
         padding: 60px 40px;
-
-        background-size: cover;
-        background-position: center;
     }
 
     .painelPrincipal h1 {
@@ -1480,9 +1461,7 @@ img {
     }
 
 
-    /* ----------------------------------------------------------------------
-       PLANOS
-       ---------------------------------------------------------------------- */
+    /* Planos */
 
     .TopoPlanos {
         width: 90%;
@@ -1525,9 +1504,7 @@ img {
     }
 
 
-    /* ----------------------------------------------------------------------
-       UNIDADES
-       ---------------------------------------------------------------------- */
+    /* Unidades */
 
     .UniFundo {
         background: #000;
@@ -1549,13 +1526,7 @@ img {
     }
 
 
-    /* ----------------------------------------------------------------------
-       LOGIN
-       ---------------------------------------------------------------------- */
-
-    .PaginaLogin {
-        min-height: 100vh;
-    }
+    /* Login */
 
     .FotoLogin {
         width: 50%;
@@ -1571,14 +1542,8 @@ img {
         max-width: 80%;
     }
 
-    .Login input {
-        width: 100%;
-    }
 
-
-    /* ----------------------------------------------------------------------
-       CADASTRO
-       ---------------------------------------------------------------------- */
+    /* Cadastro */
 
     .BoxCadastro {
         width: 90%;
@@ -1600,42 +1565,36 @@ img {
     }
 
 
-    /* ----------------------------------------------------------------------
-       PAGAMENTO
-       ---------------------------------------------------------------------- */
+    /* Pagamento */
 
     .PagamentoArea {
-        width: 100%;
-        padding: 0 15px;
+        grid-template-columns: minmax(0, 1fr) 260px;
         gap: 15px;
-    }
-
-    .PagamentoForm {
-        min-width: 0;
-    }
-
-    .ResumoPedido {
-        width: 280px;
-        flex-shrink: 0;
+        padding: 0 15px;
     }
 
     .MetodosPagamento {
-        flex-wrap: wrap;
+        grid-template-columns: 1fr 1fr;
     }
 
-    .Metodo {
-        flex: 1;
-        min-width: 180px;
+    .Metodo:last-child {
+        grid-column: span 2;
+    }
+
+    .ContainerPix {
+        gap: 20px;
+    }
+
+    .QrCodeImg {
+        width: 180px;
+        height: 180px;
     }
 
 
-    /* ----------------------------------------------------------------------
-       AULAS
-       ---------------------------------------------------------------------- */
+    /* Aulas */
 
     .principal {
         width: 95%;
-        max-width: 1200px;
     }
 
     .banner {
@@ -1661,9 +1620,7 @@ img {
     }
 
 
-    /* ----------------------------------------------------------------------
-       TREINOS
-       ---------------------------------------------------------------------- */
+    /* Treinos */
 
     .TreinosContainer {
         width: 95%;
@@ -1681,14 +1638,12 @@ img {
 
 
 /* ==========================================================================
-   CELULAR — ATÉ 768px
+   19. CELULAR — ATÉ 768px
    ========================================================================== */
 
 @media (max-width: 768px) {
 
-    /* ----------------------------------------------------------------------
-       GERAL
-       ---------------------------------------------------------------------- */
+    /* Geral */
 
     h1 {
         font-size: 32px;
@@ -1703,14 +1658,28 @@ img {
     }
 
 
-    /* ----------------------------------------------------------------------
-       HEADER
-       ---------------------------------------------------------------------- */
+    /* Menu mobile */
 
     header {
         padding: 15px 20px;
         flex-wrap: wrap;
         justify-content: center;
+        gap: 15px;
+    }
+
+    #btnMenu {
+        display: block;
+    }
+
+    #menuNav {
+        display: none;
+        width: 100%;
+    }
+
+    #menuNav.ativo {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         gap: 15px;
     }
 
@@ -1728,20 +1697,12 @@ img {
         flex-wrap: wrap;
     }
 
-    .Paginas a {
-        font-size: 14px;
-    }
 
-
-    /* ----------------------------------------------------------------------
-       HOME
-       ---------------------------------------------------------------------- */
+    /* Home */
 
     .painelPrincipal {
         min-height: 420px;
         padding: 50px 25px;
-
-        background-position: center;
     }
 
     .painelPrincipal h1 {
@@ -1769,9 +1730,7 @@ img {
     }
 
 
-    /* ----------------------------------------------------------------------
-       PLANOS
-       ---------------------------------------------------------------------- */
+    /* Planos */
 
     .FundoPlanosTopo {
         border-bottom-left-radius: 80px;
@@ -1822,7 +1781,6 @@ img {
         width: calc(100% - 30px);
         margin: 30px auto;
         overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
     }
 
     .TabelaPlanos table {
@@ -1830,9 +1788,7 @@ img {
     }
 
 
-    /* ----------------------------------------------------------------------
-       UNIDADES
-       ---------------------------------------------------------------------- */
+    /* Unidades */
 
     .UniFundo {
         background: #000;
@@ -1885,9 +1841,7 @@ img {
     }
 
 
-    /* ----------------------------------------------------------------------
-       LOGIN
-       ---------------------------------------------------------------------- */
+    /* Login */
 
     .PaginaLogin {
         flex-direction: column;
@@ -1914,15 +1868,8 @@ img {
         font-size: 30px;
     }
 
-    .Login input {
-        width: 100%;
-        padding: 13px;
-    }
 
-
-    /* ----------------------------------------------------------------------
-       CADASTRO
-       ---------------------------------------------------------------------- */
+    /* Cadastro */
 
     .PaginaCadastro {
         padding: 20px 10px;
@@ -1967,665 +1914,14 @@ img {
     }
 
 
-    /* ----------------------------------------------------------------------
-       PAGAMENTO
-       ---------------------------------------------------------------------- */
+    /* Pagamento */
 
     .PagamentoTitulo {
-        padding: 15px 20px;
+        padding: 20px;
     }
 
     .PagamentoTitulo h1 {
         font-size: 30px;
-    }
-
-    .PagamentoArea {
-        width: 100%;
-        flex-direction: column;
-        padding: 0 10px;
-    }
-
-    .PagamentoForm {
-        width: 100%;
-        margin: 0;
-        padding: 20px;
-    }
-
-    .ResumoPedido {
-        width: 100%;
-        margin: 0 0 20px;
-    }
-
-    .MetodosPagamento {
-        flex-direction: column;
-    }
-
-    .Metodo {
-        width: 100%;
-        min-width: 0;
-    }
-
-    .LinhaInputs {
-        flex-direction: column;
-        gap: 0;
-    }
-
-
-    /* ----------------------------------------------------------------------
-       AULAS
-       ---------------------------------------------------------------------- */
-
-    .principal {
-        width: 100%;
-        padding: 30px 15px;
-    }
-
-    .banner {
-        gap: 20px;
-    }
-
-    .textoAulas h1 {
-        font-size: 32px;
-    }
-
-    .cardAula {
-        width: 100%;
-        height: 220px;
-    }
-
-    .filtros {
-        width: 100%;
-    }
-
-    .filtro {
-        width: 100%;
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .caixa select {
-        width: 100%;
-    }
-
-    .dias {
-        width: 100%;
-        overflow: hidden;
-    }
-
-    .listaDias {
-        width: 100%;
-        overflow-x: auto;
-        flex: none;
-        padding: 0 10px;
-        scrollbar-width: thin;
-    }
-
-    .dia {
-        min-width: 80px;
-        flex: 0 0 80px;
-    }
-
-    /* Cada aula vira um card no celular */
-    .aula {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 8px;
-        padding: 20px;
-    }
-
-    .hora {
-        font-size: 20px;
-        color: #00295C;
-    }
-
-    .nomeAula {
-        font-size: 18px;
-    }
-
-    .professor,
-    .local {
-        font-size: 14px;
-    }
-
-    .acao {
-        width: 100%;
-        margin-top: 10px;
-        text-align: left;
-    }
-
-    .reservar {
-        width: 100%;
-    }
-
-
-    /* ----------------------------------------------------------------------
-       TREINOS
-       ---------------------------------------------------------------------- */
-
-    .TreinosContainer {
-        width: 100%;
-        padding: 35px 15px;
-    }
-
-    .TreinosTitulo {
-        margin-bottom: 30px;
-    }
-
-    .TreinosTitulo h1 {
-        font-size: 34px;
-    }
-
-    .TreinosTitulo p {
-        width: 100%;
-        font-size: 15px;
-    }
-
-    .ListaTreinos {
-        flex-direction: column;
-        align-items: center;
-        gap: 25px;
-    }
-
-    .CardTreino {
-        width: 100%;
-        max-width: 380px;
-    }
-
-    .CardTreino img {
-        height: 200px;
-    }
-
-
-    /* ----------------------------------------------------------------------
-       RODAPÉ
-       ---------------------------------------------------------------------- */
-
-    footer {
-        width: 100%;
-        padding: 30px 20px;
-    }
-
-    .coluna {
-        width: 100%;
-        display: block;
-        margin-bottom: 25px;
-    }
-
-    .newsletter {
-        width: 100%;
-        display: flex;
-    }
-
-    .email {
-        width: 100%;
-        min-width: 0;
-    }
-}
-
-
-/* ==========================================================================
-   CELULARES PEQUENOS — ATÉ 480px
-   ========================================================================== */
-
-@media (max-width: 480px) {
-
-    /* ----------------------------------------------------------------------
-       HEADER
-       ---------------------------------------------------------------------- */
-
-    header {
-        padding: 15px;
-    }
-
-    .logo {
-        font-size: 26px;
-    }
-
-    .Paginas {
-        gap: 8px 10px;
-    }
-
-    .Paginas a {
-        font-size: 12px;
-    }
-
-    .Entrar {
-        padding: 6px 10px;
-    }
-
-
-    /* ----------------------------------------------------------------------
-       HOME
-       ---------------------------------------------------------------------- */
-
-    .painelPrincipal {
-        min-height: 380px;
-        padding: 40px 20px;
-    }
-
-    .painelPrincipal h1 {
-        font-size: 32px;
-    }
-
-    .painelPrincipal p {
-        font-size: 15px;
-    }
-
-    .recursos {
-        padding: 18px;
-    }
-
-
-    /* ----------------------------------------------------------------------
-       PLANOS
-       ---------------------------------------------------------------------- */
-
-    .FundoPlanosTopo {
-        border-bottom-left-radius: 50px;
-    }
-
-    .planosTitulo h1 {
-        font-size: 30px;
-    }
-
-    .imagemPlano {
-        height: 180px;
-    }
-
-    .card {
-        max-width: 100%;
-        min-height: 400px;
-    }
-
-    .card h2 {
-        font-size: 28px;
-    }
-
-
-    /* ----------------------------------------------------------------------
-       UNIDADES
-       ---------------------------------------------------------------------- */
-
-    .UniTitulo {
-        padding: 30px 20px 10px;
-    }
-
-    .UniTitulo h1 {
-        font-size: 30px;
-    }
-
-    .UniFundoImg {
-        height: 220px;
-    }
-
-    .UniLocal {
-        min-height: 150px;
-        height: auto;
-    }
-
-    .UniLocalImg {
-        width: 95px;
-    }
-
-    .UniInfo {
-        padding: 8px;
-    }
-
-    .UniInfo h2 {
-        font-size: 15px;
-    }
-
-    .UniInfo p {
-        font-size: 10px;
-    }
-
-
-    /* ----------------------------------------------------------------------
-       LOGIN
-       ---------------------------------------------------------------------- */
-
-    .FotoLogin {
-        height: 180px;
-        min-height: 180px;
-    }
-
-    .Login {
-        padding: 30px 20px;
-    }
-
-    .LoginLogo {
-        width: 170px;
-    }
-
-    .Login h1 {
-        font-size: 27px;
-    }
-
-
-    /* ----------------------------------------------------------------------
-       CADASTRO
-       ---------------------------------------------------------------------- */
-
-    .FotoCadastro {
-        height: 180px;
-    }
-
-    .Cadastro {
-        padding: 20px 15px;
-    }
-
-    .CadastroLogo {
-        width: 170px;
-    }
-
-
-    /* ----------------------------------------------------------------------
-       PAGAMENTO
-       ---------------------------------------------------------------------- */
-
-    .PagamentoTitulo h1 {
-        font-size: 26px;
-    }
-
-    .PagamentoForm {
-        padding: 18px;
-    }
-
-    .PagamentoForm h2 {
-        font-size: 22px;
-    }
-
-    .Metodo {
-        padding: 12px;
-    }
-
-    .Metodo img {
-        width: 35px;
-        height: 35px;
-    }
-
-
-    /* ----------------------------------------------------------------------
-       AULAS
-       ---------------------------------------------------------------------- */
-
-    .textoAulas h1 {
-        font-size: 28px;
-    }
-
-    .cardAula {
-        height: 180px;
-    }
-
-    .aula {
-        padding: 16px;
-    }
-
-
-    /* ----------------------------------------------------------------------
-       TREINOS
-       ---------------------------------------------------------------------- */
-
-    .TreinosTitulo h1 {
-        font-size: 29px;
-    }
-
-    .CardTreino {
-        max-width: 100%;
-    }
-
-    .CardTreino img {
-        height: 180px;
-    }
-}
-
-
-/* ==========================================================================
-   TELAS MUITO PEQUENAS — ATÉ 360px
-   ========================================================================== */
-
-@media (max-width: 360px) {
-
-    .Paginas {
-        gap: 6px;
-    }
-
-    .Paginas a {
-        font-size: 11px;
-    }
-
-    .painelPrincipal {
-        padding: 30px 15px;
-    }
-
-    .painelPrincipal h1 {
-        font-size: 28px;
-    }
-
-    .painelPrincipal p {
-        font-size: 14px;
-    }
-
-    .card {
-        padding: 15px;
-    }
-
-    .UniLocalImg {
-        width: 80px;
-    }
-
-    .Login {
-        padding: 25px 15px;
-    }
-
-    .Cadastro {
-        padding: 18px 12px;
-    }
-
-    .PagamentoArea {
-        padding: 0 5px;
-    }
-
-    .PagamentoForm {
-        padding: 15px;
-    }
-}
-
-.ContainerPix {
-    display: flex;
-    align-items: center;
-    gap: 30px;
-    margin: 20px 0;
-}
-
-/* Redimensiona o QR Code */
-.QrCodeImg {
-    width: 220px;
-    height: 220px;
-    background-color: #ffffff;
-    padding: 10px;
-    border-radius: 8px;
-}
-
-/* Passos do Pix */
-.InstrucoesPix {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.PassoPix {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.NumeroPasso {
-    background-color: #007bb6;
-    color: #ffffff;
-    font-weight: bold;
-    font-size: 1.2rem;
-    width: 40px;
-    height: 40px;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-}
-
-.PassoPix p {
-    color: #ffffff;
-    font-size: 0.95rem;
-    margin: 0;
-}
-
-/* Linha de Copiar e Colar Pix */
-.LinhaCopiaCola {
-    display: flex;
-    gap: 10px;
-    margin-top: 8px;
-}
-
-.LinhaCopiaCola input {
-    flex: 1;
-    background-color: rgba(0, 0, 0, 0.2);
-    border: 1px solid #1e5a96;
-    border-radius: 4px;
-    padding: 10px;
-    color: #a0c4ff;
-    font-size: 0.9rem;
-}
-
-.LinhaCopiaCola button {
-    background-color: #0b4f8a;
-    color: #ffffff;
-    border: 1px solid #1e5a96;
-    padding: 10px 20px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background 0.3s;
-}
-
-.LinhaCopiaCola button:hover {
-    background-color: #007bb6;
-}
-
-/* Estilos da área de Boleto */
-.BoxBoleto {
-    border: 7px solid #1f82e5;
-    border-radius: 8px;
-    padding: 30px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    margin: 20px 0;
-}
-
-.IconeBoleto {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    border: 5px solid #1f82e5;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.IconeBoleto img {
-    width: 40px;
-}
-
-.BtnGerarBoleto {
-    width: 100%;
-    background-color: #007bb6;
-    color: #ffffff;
-    border: none;
-    padding: 12px;
-    font-size: 1.1rem;
-    font-weight: bold;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.AlertaInformativo {
-    border: 1px solid #1e5a96;
-    border-radius: 8px;
-    padding: 15px 20px;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    background-color: rgba(0, 0, 0, 0.15);
-}
-
-.IconeInfo {
-    width: 35px;
-    height: 35px;
-    border: 2px solid #007bb6;
-    color: #007bb6;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    font-size: 1.2rem;
-    flex-shrink: 0;
-}
-
-.TextoInfo strong {
-    color: #ffffff;
-    display: block;
-    font-size: 0.95rem;
-}
-
-.TextoInfo p {
-    color: #a0c4ff;
-    font-size: 0.85rem;
-    margin: 3px 0 0 0;
-}
-
-/* ==========================================================================
-   TABLET
-   ========================================================================== */
-
-@media (max-width: 1024px) {
-
-    .PagamentoArea {
-        grid-template-columns: minmax(0, 1fr) 260px;
-        gap: 15px;
-        padding: 0 15px;
-    }
-
-    .MetodosPagamento {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .Metodo:last-child {
-        grid-column: span 2;
-    }
-
-    .ContainerPix {
-        gap: 20px;
-    }
-
-    .QrCodeImg {
-        width: 180px;
-        height: 180px;
-    }
-}
-
-
-/* ==========================================================================
-   CELULAR
-   ========================================================================== */
-
-@media (max-width: 768px) {
-
-    .PagamentoTitulo {
-        padding: 20px;
     }
 
     .PagamentoArea {
@@ -2685,14 +1981,311 @@ img {
         align-items: flex-start;
         padding: 15px;
     }
+
+
+    /* Aulas */
+
+    .principal {
+        width: 100%;
+        padding: 30px 15px;
+    }
+
+    .banner {
+        gap: 20px;
+    }
+
+    .textoAulas h1 {
+        font-size: 32px;
+    }
+
+    .cardAula {
+        width: 100%;
+        height: 220px;
+    }
+
+    .imagens-slide img {
+        max-height: 200px;
+        object-fit: contain;
+    }
+
+    .filtros {
+        width: 100%;
+    }
+
+    .filtro {
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .caixa select {
+        width: 100%;
+    }
+
+    .dias {
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .listaDias {
+        width: 100%;
+        overflow-x: auto;
+        flex: none;
+        padding: 0 10px;
+    }
+
+    .dia {
+        min-width: 80px;
+        flex: 0 0 80px;
+    }
+
+    .aula {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        padding: 20px;
+    }
+
+    .hora {
+        font-size: 20px;
+        color: #00295C;
+    }
+
+    .nomeAula {
+        font-size: 18px;
+    }
+
+    .professor,
+    .local {
+        font-size: 14px;
+    }
+
+    .acao {
+        width: 100%;
+        margin-top: 10px;
+        text-align: left;
+    }
+
+    .reservar {
+        width: 100%;
+    }
+
+
+    /* Treinos */
+
+    .TreinosContainer {
+        width: 100%;
+        padding: 35px 15px;
+    }
+
+    .TreinosTitulo {
+        margin-bottom: 30px;
+    }
+
+    .TreinosTitulo h1 {
+        font-size: 34px;
+    }
+
+    .TreinosTitulo p {
+        width: 100%;
+        font-size: 15px;
+    }
+
+    .ListaTreinos {
+        flex-direction: column;
+        align-items: center;
+        gap: 25px;
+    }
+
+    .CardTreino {
+        width: 100%;
+        max-width: 380px;
+    }
+
+    .CardTreino img {
+        height: 200px;
+    }
+
+
+    /* Rodapé */
+
+    footer {
+        width: 100%;
+        padding: 30px 20px;
+    }
+
+    .coluna {
+        width: 100%;
+        display: block;
+        margin-bottom: 25px;
+    }
+
+    .newsletter {
+        width: 100%;
+    }
+
+    .email {
+        width: 100%;
+        min-width: 0;
+    }
+
+
+    /* Botões para toque */
+
+    button,
+    .Entrar,
+    .Metodo,
+    .dia,
+    .reservar {
+        min-height: 44px;
+    }
 }
 
 
 /* ==========================================================================
-   CELULAR PEQUENO
+   20. CELULAR PEQUENO — ATÉ 480px
    ========================================================================== */
 
 @media (max-width: 480px) {
+
+    header {
+        padding: 15px;
+    }
+
+    .logo {
+        font-size: 26px;
+    }
+
+    .Paginas {
+        gap: 8px 10px;
+    }
+
+    .Paginas a {
+        font-size: 12px;
+    }
+
+    .Entrar {
+        padding: 6px 10px;
+    }
+
+
+    /* Home */
+
+    .painelPrincipal {
+        min-height: 380px;
+        padding: 40px 20px;
+    }
+
+    .painelPrincipal h1 {
+        font-size: 32px;
+    }
+
+    .painelPrincipal p {
+        font-size: 15px;
+    }
+
+    .recursos {
+        padding: 18px;
+    }
+
+
+    /* Planos */
+
+    .FundoPlanosTopo {
+        border-bottom-left-radius: 50px;
+    }
+
+    .planosTitulo h1 {
+        font-size: 30px;
+    }
+
+    .imagemPlano {
+        height: 180px;
+    }
+
+    .card {
+        max-width: 100%;
+        min-height: 400px;
+    }
+
+    .card h2 {
+        font-size: 28px;
+    }
+
+
+    /* Unidades */
+
+    .UniTitulo {
+        padding: 30px 20px 10px;
+    }
+
+    .UniTitulo h1 {
+        font-size: 30px;
+    }
+
+    .UniFundoImg {
+        height: 220px;
+    }
+
+    .UniLocal {
+        min-height: 150px;
+        height: auto;
+    }
+
+    .UniLocalImg {
+        width: 95px;
+    }
+
+    .UniInfo {
+        padding: 8px;
+    }
+
+    .UniInfo h2 {
+        font-size: 15px;
+    }
+
+    .UniInfo p {
+        font-size: 10px;
+    }
+
+
+    /* Login */
+
+    .FotoLogin {
+        height: 180px;
+        min-height: 180px;
+    }
+
+    .Login {
+        padding: 30px 20px;
+    }
+
+    .LoginLogo {
+        width: 170px;
+    }
+
+    .Login h1 {
+        font-size: 27px;
+    }
+
+
+    /* Cadastro */
+
+    .FotoCadastro {
+        height: 180px;
+    }
+
+    .Cadastro {
+        padding: 20px 15px;
+    }
+
+    .CadastroLogo {
+        width: 170px;
+    }
+
+
+    /* Pagamento */
 
     .PagamentoTitulo {
         padding: 15px;
@@ -2739,5 +2332,87 @@ img {
 
     .BoxBoleto {
         border-width: 4px;
+    }
+
+
+    /* Aulas */
+
+    .textoAulas h1 {
+        font-size: 28px;
+    }
+
+    .cardAula {
+        height: 180px;
+    }
+
+    .aula {
+        padding: 16px;
+    }
+
+
+    /* Treinos */
+
+    .TreinosTitulo h1 {
+        font-size: 29px;
+    }
+
+    .CardTreino {
+        max-width: 100%;
+    }
+
+    .CardTreino img {
+        height: 180px;
+    }
+}
+
+
+/* ==========================================================================
+   21. TELAS MUITO PEQUENAS — ATÉ 360px
+   ========================================================================== */
+
+@media (max-width: 360px) {
+
+    .Paginas {
+        gap: 6px;
+    }
+
+    .Paginas a {
+        font-size: 11px;
+    }
+
+    .painelPrincipal {
+        padding: 30px 15px;
+    }
+
+    .painelPrincipal h1 {
+        font-size: 28px;
+    }
+
+    .painelPrincipal p {
+        font-size: 14px;
+    }
+
+    .card {
+        padding: 15px;
+    }
+
+    .UniLocalImg {
+        width: 80px;
+    }
+
+    .Login {
+        padding: 25px 15px;
+    }
+
+    .Cadastro {
+        padding: 18px 12px;
+    }
+
+    .PagamentoArea {
+        padding: 0 5px;
+    }
+
+    .PagamentoForm {
+        padding: 15px;
     }
 }
