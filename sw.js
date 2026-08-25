@@ -1,158 +1,52 @@
-const CACHE_NAME = 'MovePlusAcademy-v2';
+const CACHE_NAME = 'move-academy-v1';
 
-const FILES_TO_CACHE = [
+const ASSETS_TO_CACHE = [
   './',
-  './index.html',
-  './aulas.html',
-  './unidades.html',
-  './planos.html',
   './Tela_login.html',
-  './Tela_cadastro.html',
-  './pagamento.html',
-  './manifest.json',
-
+  './Tela_cadastro.htm',
+  './aulas.html',
   './css/style.css',
-  './js/script.js',
-
   './img/+.png',
   './img/Academia_img.png',
-  './img/Academia_padrão.png',
-  './img/Adesao.png',
-  './img/Alongamento.png',
-  './img/Body_pump.png',
-  './img/Boleto.png',
-  './img/Cadastro.png',
-  './img/Cardiopng.png',
-  './img/Cartao.png',
-  './img/email.png',
-  './img/facebook.png',
-  './img/Funcional.png',
-  './img/instagram.png',
-  './img/Jump.png',
-  './img/locaisUni.png',
-  './img/mapaUni.png',
-  './img/move+ Academy.png',
-  './img/move+ AcademyBranca.png',
-  './img/Nutri.png',
-  './img/Person.png',
-  './img/Peso.png',
-  './img/pino_de_localizacao.png',
-  './img/Pix.png',
-  './img/PlanoBasico.png',
-  './img/PlanoPremium+.png',
-  './img/PlanoVIP+.png',
-  './img/qr.png',
-  './img/Seta_direita.png',
-  './img/Seta_esquerda.png',
-  './img/Spinning.png',
-  './img/Tela_de_login.png',
-  './img/Tela_planos.png',
-  './img/telefone.png',
-  './img/Unidades +.png',
-  './img/whatsapp.png',
-  './img/youtube.png',
-  './img/Zumba.png'
+  './js/script.js',
+  './index.html',
+  './manifest.json',
 ];
 
-// ===============================
-// INSTALAÇÃO
-// ===============================
+// Evento de Instalação: Salva todos os arquivos estáticos no cache
 self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then((cache) => {
-        console.log('[SW] Criando cache:', CACHE_NAME);
-        return cache.addAll(FILES_TO_CACHE);
-      })
-      .then(() => {
-        console.log('[SW] Arquivos armazenados com sucesso.');
-        return self.skipWaiting();
-      })
-      .catch((error) => {
-        console.error('[SW] Erro durante a instalação:', error);
-      })
+    caches.open(CACHE_NAME).then((cache) => {
+      console.log('[Service Worker] Caching app shell');
+      return cache.addAll(ASSETS_TO_CACHE);
+    }).then(() => self.skipWaiting())
   );
 });
 
-// ===============================
-// ATIVAÇÃO
-// ===============================
+// Evento de Ativação: Limpa caches antigos caso a versão do CACHE_NAME mude
 self.addEventListener('activate', (event) => {
   event.waitUntil(
-    caches.keys()
-      .then((cacheNames) => {
-        return Promise.all(
-          cacheNames.map((cacheName) => {
-            if (cacheName !== CACHE_NAME) {
-              console.log('[SW] Excluindo cache antigo:', cacheName);
-              return caches.delete(cacheName);
-            }
-          })
-        );
-      })
-      .then(() => self.clients.claim())
+    caches.keys().then((cacheNames) => {
+      return Promise.all(
+        cacheNames.map((cache) => {
+          if (cache !== CACHE_NAME) {
+            console.log('[Service Worker] Removing old cache:', cache);
+            return caches.delete(cache);
+          }
+        })
+      );
+    }).then(() => self.clients.claim())
   );
 });
 
-// ===============================
-// REQUISIÇÕES
-// ===============================
+// Evento Fetch: Intercepta as requisições para responder via Cache primeiro e Rede como fallback
 self.addEventListener('fetch', (event) => {
-
-  // Ignora requisições que não sejam GET
-  if (event.request.method !== 'GET') {
-    return;
-  }
-
   event.respondWith(
-    caches.match(event.request)
-      .then((cachedResponse) => {
-
-        // Se estiver no cache, utiliza o cache
-        if (cachedResponse) {
-          return cachedResponse;
-        }
-
-        // Caso contrário, busca na internet
-        return fetch(event.request)
-          .then((networkResponse) => {
-
-            // Não armazena respostas inválidas
-            if (
-              !networkResponse ||
-              networkResponse.status !== 200 ||
-              networkResponse.type !== 'basic'
-            ) {
-              return networkResponse;
-            }
-
-            // Salva uma cópia no cache
-            const responseClone = networkResponse.clone();
-
-            caches.open(CACHE_NAME)
-              .then((cache) => {
-                cache.put(event.request, responseClone);
-              });
-
-            return networkResponse;
-          })
-          .catch(() => {
-            console.warn(
-              '[SW] Recurso indisponível offline:',
-              event.request.url
-            );
-
-            // Para páginas HTML, tenta retornar a página inicial
-            if (event.request.destination === 'document') {
-              return caches.match('./index.html');
-            }
-
-            // Para outros recursos, retorna uma resposta vazia
-            return new Response('', {
-              status: 503,
-              statusText: 'Offline'
-            });
-          });
-      })
+    caches.match(event.request).then((cachedResponse) => {
+      if (cachedResponse) {
+        return cachedResponse;
+      }
+      return fetch(event.request);
+    })
   );
 });
