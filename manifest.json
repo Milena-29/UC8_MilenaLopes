@@ -1,28 +1,32 @@
 {
-  "short_name": "Move+ Academy",
   "name": "Move+ Academy - Sua Academia",
+  "short_name": "Move+ Academy",
+  "description": "Aplicativo oficial da Move+ Academy. Acompanhe seus treinos, planos e aulas.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#00295C",
+  "theme_color": "#000000",
+  "lang": "pt-BR",
+  "orientation": "portrait",
   "icons": [
     {
       "src": "./img/+.png",
-      "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "192x192",
+      "type": "image/png"
     },
     {
-      "src": "./img/move+ Academy.png",
-      "type": "image/png",
-      "sizes": "512x512"
+      "src": "./img/move+ academy.png",
+      "sizes": "512x512",
+      "type": "image/png"
     }
   ],
-  "start_url": "./index.html",
+  "id": "move-plus-academy",
+  "dir": "ltr",
   "scope": "./",
-  "background_color": "#00295C",
-  "theme_color": "#000000",
-  "display": "standalone",
-  "orientation": "portrait",
-  "description": "Aplicativo oficial da Move+ Academy. Acompanhe seus treinos, planos e aulas.",
   "categories": [
     "fitness",
     "health",
+    "health &amp; fitness",
     "sports"
   ]
 }
